@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
 
     public function postSignUp(Request $request)
     {
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'id' => ['required', 'unique:users', 'max:15'],
             'name' => ['required', 'max:20'],
             'password' => ['required', 'min:4'],
@@ -18,21 +19,29 @@ class UserController extends Controller
             'email' => ['email', 'required', 'unique:users'],
             'phone' => ['numeric', 'required', 'unique:users'],
         ]);
+        if($validator->fails()) {
+            $result = ['result' => 'Failure',
+                'message' => $validator->errors()];
 
-        $user = new User();
-        $user->$request['id'];
-        $user->$request['name'];
-        $user->bcrypt($request['password']);
-        $user->$request['bio'];
-        $user->$request['email'];
-        $user->$request['phone'];
+            $response = \Response::json($result)->setStatusCode(200, 'Success');
+        }
+        else{
+            $user = new User();
+            $user->id = $request['id'];
+            $user->name = $request['name'];
+            $user->password = bcrypt($request['password']);
+            $user->bio = $request['bio'];
+            $user->email = $request['email'];
+            $user->phone = $request['phone'];
 
-        $user->save();
+            $user->save();
 
-        $result = ['result' => 'OK',
-            'message' => 'The user '.$request['name'].' has been created !'];
+            $result = ['result' => 'OK',
+                'message' => 'The user ' . $request['name'] . ' has been created !'];
 
-        $response = \Response::json($result)->setStatusCode(200, 'Success');
+            $response = \Response::json($result)->setStatusCode(200, 'Success');
+        }
+
 
         return $response;
 
