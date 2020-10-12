@@ -10,15 +10,33 @@
             <h1 class="header_sign"><strong>Belphi</strong></h1>
 
             <div class="inner_div_sign">
-                <b-button type="submit" variant="outline-warning" class="btn_sign font">Sign in</b-button> 
-                <b-button type="submit" variant="outline-warning" class="btn_sign font">Sign up</b-button> 
+                <b-button type="submit" variant="outline-warning" class="btn_sign font">Sign in</b-button>
+                <b-button type="submit" variant="outline-warning" class="btn_sign font" @click="signup">Sign up</b-button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from "axios";
     export default {
+        methods:{
+          signup(){
+              axios.post('/api/signup', {
+                  id: 'rezaR',
+                  name: 'Reza',
+                  bio: '',
+                  email: 'a@b.com',
+                  phone: '09121212'
+              })
+                  .then(function (response) {
+                      console.log(response);
+                  })
+                  .catch(function (error) {
+                      console.log(error);
+                  });
+          }
+        },
         mounted() {
             console.log('Component mounted.')
         }
