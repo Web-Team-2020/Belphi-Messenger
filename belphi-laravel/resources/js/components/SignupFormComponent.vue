@@ -5,33 +5,33 @@
 
         <form>
             <div class="form-group">
-                <label for="email"> Your email </label>
-                <input v-model="email" class="form-control" type="email" name="email" id="email">
-            </div>
-
-            <div class="form-group">
                 <label for="name"> Your name </label>
-                <input v-model="name" class="form-control" type="text" name="name" id="name">
+                <input v-model="name" class="form-control" type="text" name="name" id="name" :class="[name.length > 0 ?'green':'red']">
             </div>
 
             <div class="form-group">
-                <label for="id"> Your id </label>
-                <input v-model="id" class="form-control" type="text" name="id" id="id">
+                <label for="email"> Your email </label>
+                <input v-model="email" class="form-control" type="email" name="email" id="email" :class="[emailphone === 3 || emailphone === 2 ?'green': emailphone === 0 ? 'red':'']">
             </div>
 
             <div class="form-group">
                 <label for="phone"> Your phone </label>
-                <input v-model="phone" class="form-control" type="text" name="phone" id="phone">
+                <input v-model="phone" class="form-control" type="text" name="phone" id="phone" :class="[emailphone === 3 || emailphone === 1 ?'green': emailphone === 0 ? 'red':'']">
             </div>
 
             <div class="form-group">
-                <label for="password"> Your password </label>
-                <input v-model="password" class="form-control" type="password" name="password" id="password">
+                <label for="id"> Your id </label>
+                <input v-model="id" class="form-control" type="text" name="id" id="id" :class="[id.length > 0 ?'green':'']">
             </div>
 
             <div class="form-group">
                 <label for="bio"> Your bio </label>
-                <input v-model="bio" class="form-control" type="plain-text" name="bio" id="bio">
+                <input v-model="bio" class="form-control" type="plain-text" name="bio" id="bio" :class="[bio === null ? '': bio.length > 0 ? 'green': '' ]">
+            </div>
+
+            <div class="form-group">
+                <label for="password"> Your password </label>
+                <input v-model="password" class="form-control" type="password" name="password" id="password" :class="[password.length >= 4 ?'green':'red']">
             </div>
 
             <button type="submit" class="btn btn-lg" @click="formSignup" style="color:white; background-color:#a21b24;">
@@ -58,7 +58,6 @@ export default {
             phone: '',
             bio: null,
             password: ''
-
         }
     },
     methods: {
@@ -83,10 +82,28 @@ export default {
             //Must use router i think
         }
     },
+     computed:  {
+         emailphone: function() {
+             if ( this.email.length === 0 && this.phone.length === 0){
+                 return 0
+             } else if (this.email.length > 0 && this.phone.length > 0){
+                 return 3
+             }else if (this.email.length > 0) {
+                 return 2
+             } else if (this.phone.length > 0) {
+                 return 1
+             }
+         } 
+     }
 
 }
 </script>
 
 <style scoped>
-
+.red {
+    border: 1px solid red;
+}
+.green {
+    border: 1px solid green;
+}
 </style>
