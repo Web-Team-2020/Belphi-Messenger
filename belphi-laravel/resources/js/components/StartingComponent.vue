@@ -10,13 +10,16 @@
             <h1 class="header_sign"><strong>Belphi</strong></h1>
 
             <div v-if="inInit" class="inner_div_sign">
-                <b-button type="submit" variant="outline-warning" class="btn_sign font" >Sign in
+                <b-button type="submit" variant="outline-warning" class="btn_sign font" @click="signin">Sign in
                 </b-button>
                 <b-button type="submit" variant="outline-warning" class="btn_sign font" @click="signup">Sign up
                 </b-button>
             </div>
-            <div v-if="!inInit" class="d-flex justify-content-center">
+            <div v-if="inSignup" class="d-flex justify-content-center">
                 <signup-form-component></signup-form-component>
+            </div>
+            <div v-if="inSignin" class="d-flex justify-content-center">
+                <signin-form-component></signin-form-component>
             </div>
 
         </div>
@@ -27,25 +30,32 @@
 
 export default {
     data() {
-        return {
-        }
+        return {}
     },
-    computed:{
-        inInit: function (){
+    computed: {
+        inInit: function () {
             return this.$store.getters.getInit
-        }
-
-    }
-    ,
-    methods: {
-
-        inSignup(){
+        },
+        inSignup() {
 
             return this.$store.getters.getSignup;
         },
+        inSignin() {
+
+            return this.$store.getters.getSignin;
+        }
+
+    },
+    methods: {
+
+
         signup() {
 
             this.$store.commit('changeSignup');
+        },
+        signin() {
+
+            this.$store.commit('changeSignin');
 
         }
     }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use MongoDB\Driver\Session;
 
 class UserController extends Controller
 {
@@ -19,13 +21,12 @@ class UserController extends Controller
             'email' => ['email', 'required', 'unique:users'],
             'phone' => ['numeric', 'required', 'unique:users'],
         ]);
-        if($validator->fails()) {
+        if ($validator->fails()) {
             $result = ['result' => 'Failure',
                 'message' => $validator->errors()];
 
-            $response = \Response::json($result)->setStatusCode(200, 'Success');
-        }
-        else{
+            $response = \Response::json($result)->setStatusCode(400, 'Bad request.');
+        } else {
             $user = new User();
             $user->id = $request['id'];
             $user->name = $request['name'];
@@ -37,7 +38,8 @@ class UserController extends Controller
             $user->save();
 
             $result = ['result' => 'OK',
-                'message' => 'The user ' . $request['name'] . ' has been created !'];
+                'message' => 'The user ' . $request['name'] . ' has been created !',
+                'token' => Session::token()];
 
             $response = \Response::json($result)->setStatusCode(200, 'Success');
         }
@@ -49,6 +51,17 @@ class UserController extends Controller
 
     public function postSignIn(Request $request)
     {
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            $result = ['result' => 'Logged in',
+                'message' => 'The user has been logged in !!'];
 
+            $response = \Response::json($result)->setStatusCode(200, 'Success');
+        } else {
+            $result = ['result' => 'Failure',
+                'message' => 'Signing user in was failed !'];
+
+            $response = \Response::json($result)->setStatusCode(401, 'Unauthorized');
+        }
+        return $response;
     }
 }
