@@ -56,7 +56,7 @@ export default {
     data() {
         return {
             name: '',
-            id: null,
+            id: '',
             email: '',
             phone: '',
             bio: null,
@@ -96,7 +96,7 @@ export default {
              } else if (this.phone.length > 0) {
                  return 1
              }
-         } 
+         }
      }
 
 }
