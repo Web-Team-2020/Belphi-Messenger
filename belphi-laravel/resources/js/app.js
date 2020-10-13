@@ -29,6 +29,7 @@ Vue.use(IconsPlugin)
 
 Vue.component('greeting-component', require('./components/GreetingComponent.vue').default);
 Vue.component('starting-component', require('./components/StartingComponent.vue').default);
+Vue.component('signup-form-component', require('./components/SignupFormComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
