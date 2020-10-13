@@ -9,13 +9,17 @@
         <div class="div_sign">
             <h1 class="header_sign"><strong>Belphi</strong></h1>
 
-            <div v-if="showButtons" class="inner_div_sign">
-                <b-button type="submit" variant="outline-warning" class="btn_sign font">Sign in</b-button>
+            <div v-if="inInit" class="inner_div_sign">
+                <b-button type="submit" variant="outline-warning" class="btn_sign font" @click="signin">Sign in
+                </b-button>
                 <b-button type="submit" variant="outline-warning" class="btn_sign font" @click="signup">Sign up
                 </b-button>
             </div>
-            <div v-if="showSignup" class="d-flex justify-content-center">
+            <div v-if="inSignup" class="d-flex justify-content-center">
                 <signup-form-component></signup-form-component>
+            </div>
+            <div v-if="inSignin" class="d-flex justify-content-center">
+                <signin-form-component></signin-form-component>
             </div>
 
         </div>
@@ -23,20 +27,36 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
     data() {
-        return {
-            showButtons: true,
-            showSignin: false,
-            showSignup: false
+        return {}
+    },
+    computed: {
+        inInit: function () {
+            return this.$store.getters.getInit
+        },
+        inSignup() {
+
+            return this.$store.getters.getSignup;
+        },
+        inSignin() {
+
+            return this.$store.getters.getSignin;
         }
+
     },
     methods: {
+
+
         signup() {
-            this.showButtons = false;
-            this.showSignup = true;
+
+            this.$store.commit('changeSignup');
+        },
+        signin() {
+
+            this.$store.commit('changeSignin');
+
         }
     }
 
