@@ -14,7 +14,7 @@
                 <input v-model="password" class="form-control" type="password" name="password" id="password">
             </div>
 
-            <button type="submit" class="btn btn-lg" @click="formSignup" style="color:white; background-color:#a21b24;">
+            <button type="submit" class="btn btn-lg" @click="formSignin" style="color:white; background-color:#a21b24;">
                 Sign in
             </button>
 
@@ -35,30 +35,25 @@ import axios from "axios";
 export default {
     data() {
         return {
-            name: '',
-            id: null,
             email: '',
-            phone: '',
-            bio: null,
             password: ''
-
         }
     },
     methods: {
-        formSignup() {
+        formSignin() {
 
             axios.post('/api/signin', {
-                password: this.password,
                 email: this.email,
+                password: this.password
             })
                 .then(function (response) {
                     console.log(response);
                 })
                 .catch(function (error) {
                     console.log(error);
-                });
+                }).bind(this);
         },
-        back(){
+        back() {
             this.$store.commit('changeInit');
         }
     },
