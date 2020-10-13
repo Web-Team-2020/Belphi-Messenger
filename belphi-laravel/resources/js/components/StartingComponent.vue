@@ -9,12 +9,13 @@
         <div class="div_sign">
             <h1 class="header_sign"><strong>Belphi</strong></h1>
 
-            <div v-if="showButtons" class="inner_div_sign">
-                <b-button type="submit" variant="outline-warning" class="btn_sign font">Sign in</b-button>
+            <div v-if="inInit" class="inner_div_sign">
+                <b-button type="submit" variant="outline-warning" class="btn_sign font" >Sign in
+                </b-button>
                 <b-button type="submit" variant="outline-warning" class="btn_sign font" @click="signup">Sign up
                 </b-button>
             </div>
-            <div v-if="showSignup" class="d-flex justify-content-center">
+            <div v-if="!inInit" class="d-flex justify-content-center">
                 <signup-form-component></signup-form-component>
             </div>
 
@@ -23,20 +24,29 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
     data() {
         return {
-            showButtons: true,
-            showSignin: false,
-            showSignup: false
         }
     },
+    computed:{
+        inInit: function (){
+            return this.$store.getters.getInit
+        }
+
+    }
+    ,
     methods: {
+
+        inSignup(){
+
+            return this.$store.getters.getSignup;
+        },
         signup() {
-            this.showButtons = false;
-            this.showSignup = true;
+
+            this.$store.commit('changeSignup');
+
         }
     }
 

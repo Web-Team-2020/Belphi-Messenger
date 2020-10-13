@@ -37,12 +37,15 @@
             <button type="submit" class="btn btn-lg" @click="formSignup" style="color:white; background-color:#a21b24;">
                 Sign up
             </button>
-            <button type="submit" class="btn btn-lg" @click="undo" style="color:white; background-color:#a21b24;">
+
+            <!-- Below
+            <input type="hidden" name="_token" value="">
+            ! -->
+            <button class="btn btn-lg" @click="back" style="color:white; background-color:#a21b24;">
                 Back
             </button>
-            <!-- Below ! -->
-            <input type="hidden" name="_token" value="">
         </form>
+
     </div>
 </template>
 
@@ -53,7 +56,7 @@ export default {
     data() {
         return {
             name: '',
-            id: '',
+            id: null,
             email: '',
             phone: '',
             bio: null,
@@ -79,8 +82,8 @@ export default {
                     console.log(error);
                 });
         },
-        undo(){
-            //Must use router i think
+        back(){
+            this.$store.commit('changeInit');
         }
     },
 
