@@ -206,5 +206,12 @@ export default {
     box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
 }
 
+.red{
+    border: 1px solid red;
+}
+
+.green{
+    border: 1px solid green;
+}
 
 </style>

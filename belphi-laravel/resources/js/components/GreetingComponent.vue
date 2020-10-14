@@ -33,10 +33,6 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: Clip;
-  src: url("https://acupoftee.github.io/fonts/Clip.ttf");
-}
 
 body {
   background-color: #141114;
@@ -55,8 +51,12 @@ body {
   left: 0%;
   top: 0%;
   letter-spacing: 2;
-  font-family: "Clip";
+  font-family: serif;
   text-transform: capitalize;
+  background-image: url('images/bg1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .sign {
@@ -70,7 +70,7 @@ body {
   letter-spacing: 2;
   left: 0%;
   top: 0%;
-  font-family: "Clip";
+  font-family: serif;
   text-transform: capitalize;
   font-size: 5em;
   color: #fff6a9;
