@@ -13,19 +13,17 @@
                 <label for="password"> Your password </label>
                 <input v-model="password" class="form-control" type="password" name="password" id="password">
             </div>
-
-            <button type="submit" class="btn btn-lg" @click="formSignin" style="color:white; background-color:#a21b24;">
-                Sign in
-            </button>
-
-            <!-- Below
-            <input type="hidden" name="_token" value="">
-            ! -->
-            <button class="btn btn-lg" @click="back" style="color:white; background-color:#a21b24;">
-                Back
-            </button>
         </form>
+        <button type="submit" class="btn btn-lg" @click="formSignin" style="color:white; background-color:#a21b24;">
+            Sign in
+        </button>
 
+        <!-- Below
+        <input type="hidden" name="_token" value="">
+        ! -->
+        <button class="btn btn-lg" @click="back" style="color:white; background-color:#a21b24;">
+            Back
+        </button>
     </div>
 </template>
 
@@ -47,11 +45,13 @@ export default {
                 password: this.password
             })
                 .then(function (response) {
+                    console.log('accepted');
                     console.log(response);
                 })
                 .catch(function (error) {
+                    console.log('failed');
                     console.log(error);
-                }).bind(this);
+                });
         },
         back() {
             this.$store.commit('changeInit');
