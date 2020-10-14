@@ -56,13 +56,12 @@ class UserController extends Controller
                 'message' => 'The user has been logged in !!'];
 
             $response = \Response::json($result)->setStatusCode(200, 'Success');
-            return $response;
+        } else {
+            $result = ['result' => 'Failure',
+                'message' => 'Signing user in was failed !'];
+
+            $response = \Response::json($result)->setStatusCode(401, 'Unauthorized');
         }
-        $result = ['result' => 'Failure',
-            'message' => 'Signing user in was failed !'];
-
-        $response = \Response::json($result)->setStatusCode(401, 'Unauthorized');
-
         return $response;
     }
 }
