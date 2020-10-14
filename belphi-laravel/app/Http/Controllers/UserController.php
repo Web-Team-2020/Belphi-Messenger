@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use MongoDB\Driver\Session;
 
 class UserController extends Controller
 {
@@ -25,7 +24,7 @@ class UserController extends Controller
             $result = ['result' => 'Failure',
                 'message' => $validator->errors()];
 
-            $response = \Response::json($result)->setStatusCode(400, 'Bad request.');
+            $response = response()->json($result)->setStatusCode(400, 'Bad request.');
         } else {
             $user = new User();
             $user->id = $request['id'];
@@ -38,10 +37,9 @@ class UserController extends Controller
             $user->save();
 
             $result = ['result' => 'OK',
-                'message' => 'The user ' . $request['name'] . ' has been created !',
-                'token' => Session::token()];
+                'message' => 'The user ' . $request['name'] . ' has been created !'];
 
-            $response = \Response::json($result)->setStatusCode(200, 'Success');
+            $response = response()->json($result)->setStatusCode(200, 'Success');
         }
 
 
@@ -55,12 +53,12 @@ class UserController extends Controller
             $result = ['result' => 'Logged in',
                 'message' => 'The user has been logged in !!'];
 
-            $response = \Response::json($result)->setStatusCode(200, 'Success');
+            $response = response()->json($result)->setStatusCode(200, 'Success');
         } else {
             $result = ['result' => 'Failure',
                 'message' => 'Signing user in was failed !'];
 
-            $response = \Response::json($result)->setStatusCode(401, 'Unauthorized');
+            $response = response()->json($result)->setStatusCode(401, 'Unauthorized');
         }
         return $response;
     }
