@@ -40,15 +40,14 @@
                        :class="[password.length >= 4 ?'green':'red']">
             </div>
         </form>
-        <button type="submit" class="btn-hover color-1" @click="formSignup"
-                style="color:white; background-color:#a21b24;">
+        <button type="submit" class="btn-hover color-1" @click="formSignup">
             Sign up
         </button>
 
         <!-- Below
         <input type="hidden" name="_token" value="">
         ! -->
-        <button class="btn-hover color-7" @click="back" style="color:white; background-color:#a21b24;">
+        <button class="btn-hover color-7" @click="back">
             Back
         </button>
 
@@ -206,5 +205,12 @@ export default {
     box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
 }
 
+.red {
+    border: 1px solid red;
+}
+
+.green {
+    border: 1px solid green;
+}
 
 </style>
