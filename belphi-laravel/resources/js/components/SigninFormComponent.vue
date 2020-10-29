@@ -63,7 +63,6 @@ export default {
                     }
                     console.log('failed');
                     console.log(typeof error);
-                    console.log(error.response.data.message);
                     console.log(error.response.data);
                 }.bind(this));
         },
