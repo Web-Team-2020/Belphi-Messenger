@@ -7,37 +7,35 @@
             <div class="form-group">
                 <label for="name"> Your name </label>
                 <input v-model="name" class="form-control" type="text" name="name" id="name"
-                       :class="[name.length > 0 ?'green':'red']">
+                       :class="{'is-invalid': name.length === 0 && flag_signup}">
             </div>
 
             <div class="form-group">
                 <label for="email"> Your email </label>
                 <input v-model="email" class="form-control" type="email" name="email" id="email"
-                       :class="[emailphone === 3 || emailphone === 2 ?'green': emailphone === 0 ? 'red':'']">
+                       :class="[emailphone === 1? '': emailphone === 0 && flag_signup ? 'is-invalid' : '']">
             </div>
 
             <div class="form-group">
                 <label for="phone"> Your phone </label>
                 <input v-model="phone" class="form-control" type="text" name="phone" id="phone"
-                       :class="[emailphone === 3 || emailphone === 1 ?'green': emailphone === 0 ? 'red':'']">
+                       :class="[emailphone === 2? '': emailphone === 0 && flag_signup ? 'is-invalid' : '']">
             </div>
 
             <div class="form-group">
                 <label for="id"> Your id </label>
-                <input v-model="id" class="form-control" type="text" name="id" id="id"
-                       :class="[id.length > 0 ?'green':'']">
+                <input v-model="id" class="form-control" type="text" name="id" id="id">
             </div>
 
             <div class="form-group">
                 <label for="bio"> Your bio </label>
-                <input v-model="bio" class="form-control" type="plain-text" name="bio" id="bio"
-                       :class="[bio === null ? '': bio.length > 0 ? 'green': '' ]">
+                <input v-model="bio" class="form-control" type="plain-text" name="bio" id="bio">
             </div>
 
             <div class="form-group">
                 <label for="password"> Your password </label>
                 <input v-model="password" class="form-control" type="password" name="password" id="password"
-                       :class="[password.length >= 4 ?'green':'red']">
+                       :class="{'is-invalid': password.length < 4 && flag_signup}">
             </div>
         </form>
         <button type="submit" class="btn-hover color-1" @click="formSignup">
@@ -65,12 +63,13 @@ export default {
             email: '',
             phone: '',
             bio: null,
-            password: ''
+            password: '',
+            flag_signup: false
         }
     },
     methods: {
         formSignup() {
-
+            this.flag_signup = true
             axios.post('/api/signup', {
                 name: this.name,
                 id: this.id,
@@ -94,12 +93,10 @@ export default {
         emailphone: function () {
             if (this.email.length === 0 && this.phone.length === 0) {
                 return 0
-            } else if (this.email.length > 0 && this.phone.length > 0) {
-                return 3
-            } else if (this.email.length > 0) {
-                return 2
-            } else if (this.phone.length > 0) {
+            } else if (this.email.length === 0 && this.phone.length > 0) {
                 return 1
+            } else if (this.email.length > 0 && this.phone.length === 0) {
+                return 2
             }
         }
     }
@@ -132,7 +129,7 @@ export default {
     background-size: 300% 100%;
 
     border-radius: 50px;
-    moz-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
@@ -140,7 +137,7 @@ export default {
 
 .btn-hover:hover {
     background-position: 100% 0;
-    moz-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;

@@ -38,12 +38,13 @@ export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            flag_signin: false
         }
     },
     methods: {
         formSignin() {
-
+            this.flag_signin = true //...........
             axios.post('/api/signin', {
                 email: this.email,
                 password: this.password
