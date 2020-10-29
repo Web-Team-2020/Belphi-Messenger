@@ -56,7 +56,7 @@ class UserController extends Controller
             $response = response()->json($result)->setStatusCode(200, 'Success');
         } else {
             $result = ['result' => 'Failure',
-                'message' => 'Signing user in was failed !'];
+                'message' => 'The email/password combination is empty or not valid ! '];
 
             $response = response()->json($result)->setStatusCode(401, 'Unauthorized');
         }
