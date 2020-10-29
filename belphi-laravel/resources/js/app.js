@@ -14,6 +14,10 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import state from "./state";
+import mutations from "./mutations";
+import getters from "./getters";
+
 Vue.use(Vuex)
 
 
@@ -44,36 +48,9 @@ Vue.component('signin-form-component', require('./components/SigninFormComponent
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 const store = new Vuex.Store({
-    state: {
-        initial: true,
-        showSignin: false,
-        showSignup: false
-    },
-    mutations: {
-        changeInit(state) {
-            state.initial = true
-            state.showSignin = state.showSignup = false
-        },
-        changeSignin(state) {
-            state.initial = false
-            state.showSignin = true
-        },
-        changeSignup(state) {
-            state.initial = false
-            state.showSignup = true
-        }
-    },
-    getters: {
-        getInit: state => {
-            return state.initial
-        },
-        getSignin: state => {
-            return state.showSignin
-        },
-        getSignup: state => {
-            return state.showSignup
-        }
-    }
+    state,
+    mutations: mutations,
+    getters
 })
 
 export const app = new Vue({
