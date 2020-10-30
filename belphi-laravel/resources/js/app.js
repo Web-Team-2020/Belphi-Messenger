@@ -14,12 +14,16 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import VueRouter from 'vue-router';
+
 import state from "./state";
 import mutations from "./mutations";
 import getters from "./getters";
+import {routes} from "./routes";
 
 Vue.use(Vuex)
 
+//Vue.use(VueRouter)
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -53,8 +57,14 @@ const store = new Vuex.Store({
     getters
 })
 
+const router = new VueRouter({
+    mode: 'history',
+    routes // short for `routes: routes`
+})
+
 export const app = new Vue({
     el: '#app',
-    store: store
+    store: store,
+    router: router
 });
 
