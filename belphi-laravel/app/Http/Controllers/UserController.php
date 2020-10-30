@@ -23,7 +23,7 @@ class UserController extends Controller
         if ($validator->fails()) {
             $result = ['result' => 'Failure',
                 'errors' => $validator->errors(),
-                'message' => 'Please check data or complete necessary fields'];
+                'message' => 'Please check data or complete neccessary fields'];
 
             $response = response()->json($result)->setStatusCode(400, 'Bad request.');
         } else {

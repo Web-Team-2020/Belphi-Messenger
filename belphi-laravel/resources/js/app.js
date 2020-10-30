@@ -41,6 +41,7 @@ Vue.component('greeting-component', require('./components/GreetingComponent.vue'
 Vue.component('starting-component', require('./components/StartingComponent.vue').default);
 Vue.component('signup-form-component', require('./components/SignupFormComponent.vue').default);
 Vue.component('signin-form-component', require('./components/SigninFormComponent.vue').default);
+Vue.component('dashboard-component', require('./components/DashboardComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
