@@ -2,7 +2,9 @@
     <div class="col-md-6">
 
         <h3>Sign up </h3>
-
+        <div v-if="flag_errors" class="alert alert-danger" role="alert">
+            {{errors}}
+        </div>
         <form>
             <div class="form-group">
                 <label for="name"> Your name </label>
@@ -64,7 +66,9 @@ export default {
             phone: '',
             bio: null,
             password: '',
-            flag_signup: false
+            flag_signup: false,
+            errors : '',
+            flag_errors : false
         }
     },
     methods: {
@@ -82,8 +86,13 @@ export default {
                     console.log(response);
                 })
                 .catch(function (error) {
+                    if (error.response.status == 400){
+                        this.flag_errors = true
+                        this.errors = error.response.data.message
+                    }
                     console.log(error);
-                });
+                    console.log(error.response.data);
+                }.bind(this));
         },
         back() {
             this.$store.commit('changeInit');
