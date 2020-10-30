@@ -2,10 +2,10 @@
     <div class="col-md-6">
 
         <h3>Sign in </h3>
-        <div v-if="flag_errors" class="alert alert-danger" role="alert">
+        <div v-if="errors!=''" class="alert alert-danger" role="alert">
             {{errors}}
         </div>
-        <form>
+        <form @keydown="errors=''">
             <div class="form-group">
                 <label for="email"> Your email </label>
                 <input v-model="email" class="form-control" type="email" name="email" id="email">
@@ -42,8 +42,7 @@ export default {
             email: '',
             password: '',
             flag_signin: false,
-            errors : '',
-            flag_errors : false
+            errors : ''
         }
     },
     methods: {
@@ -58,7 +57,6 @@ export default {
                 })
                 .catch(function (error) {
                     if (error.response.status == 401){
-                        this.flag_errors = true
                         this.errors = error.response.data.message
                     }
                     console.log('failed');

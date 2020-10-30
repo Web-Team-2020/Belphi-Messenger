@@ -2,10 +2,10 @@
     <div class="col-md-6">
 
         <h3>Sign up </h3>
-        <div v-if="flag_errors" class="alert alert-danger" role="alert">
+        <div v-if="errors!=''" class="alert alert-danger" role="alert">
             {{errors}}
         </div>
-        <form>
+        <form @keydown="errors=''">
             <div class="form-group">
                 <label for="name"> Your name </label>
                 <input v-model="name" class="form-control" type="text" name="name" id="name"
@@ -67,8 +67,7 @@ export default {
             bio: null,
             password: '',
             flag_signup: false,
-            errors : '',
-            flag_errors : false
+            errors : ''
         }
     },
     methods: {
@@ -87,7 +86,6 @@ export default {
                 })
                 .catch(function (error) {
                     if (error.response.status == 400){
-                        this.flag_errors = true
                         this.errors = error.response.data.message
                     }
                     console.log(error);
