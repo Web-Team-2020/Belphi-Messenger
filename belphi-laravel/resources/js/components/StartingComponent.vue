@@ -21,6 +21,11 @@
             <div v-if="inSignin" class="d-flex justify-content-center">
                 <signin-form-component></signin-form-component>
             </div>
+            <div>
+                <router-link to="/home">Go to home</router-link>
+
+                <router-view></router-view>
+            </div>
 
         </div>
     </div>
