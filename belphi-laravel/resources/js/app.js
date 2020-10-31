@@ -43,6 +43,8 @@ Vue.component('signup-form-component', require('./components/SignupFormComponent
 Vue.component('signin-form-component', require('./components/SigninFormComponent.vue').default);
 Vue.component('dashboard-component', require('./components/DashboardComponent.vue').default);
 Vue.component('chats-component', require('./components/ChatsComponent.vue').default);
+Vue.component('info-component', require('./components/InfoComponent.vue').default);
+Vue.component('navbar-component', require('./components/NavbarComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
