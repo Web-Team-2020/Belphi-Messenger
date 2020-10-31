@@ -80,7 +80,7 @@ export default {
 }
 
 .header_sign {
-    text-shadow: 2px 2px #ffa500;;
+    text-shadow: 2px 2px #ffa500;
 }
 
 .inner_div_sign {
