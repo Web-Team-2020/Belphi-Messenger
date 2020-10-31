@@ -3,7 +3,7 @@
         <div class="pos-f-t">
             <nav class="navbar navbar-light bg-warning">
                 <form class="form-inline">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@
                 <div class="collapse style_border flex-item-left" id="navbarToggleExternalContent">
                     <div class="p-4 list-group list-group-flush">
                         <button type="button" class="list-group-item list-group-item-action" disabled style="color: black;">your name</button>
-                        <button type="button" class="list-group-item list-group-item-action">Info</button>
+                        <button type="button" @click="$router.push('info')" class="list-group-item list-group-item-action">Info</button>
                         <button type="button" class="list-group-item list-group-item-action">Contacts</button>
                         <button type="button" class="list-group-item list-group-item-action">Settings</button>
                         <button type="button" class="list-group-item list-group-item-action">About</button>
@@ -30,6 +30,7 @@
                 </div>
             </div>
         </div>
+        <router-view></router-view>
     </div>
 </template>
 

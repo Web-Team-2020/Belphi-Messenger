@@ -4,6 +4,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
+import DashboardComponent from "./components/DashboardComponent";
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -19,10 +22,14 @@ import VueRouter from 'vue-router';
 import state from "./state";
 import mutations from "./mutations";
 import getters from "./getters";
+import GreetingComponent from "./components/GreetingComponent";
+import SigninFormComponent from "./components/SigninFormComponent";
+import Hello from "./components/HelloComponent";
+import HelloComponent from "./components/HelloComponent";
 
 Vue.use(Vuex)
 
-//Vue.use(VueRouter)
+Vue.use(VueRouter)
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -46,6 +53,7 @@ Vue.component('signup-form-component', require('./components/SignupFormComponent
 Vue.component('signin-form-component', require('./components/SigninFormComponent.vue').default);
 Vue.component('dashboard-component', require('./components/DashboardComponent.vue').default);
 Vue.component('chats-component', require('./components/ChatsComponent.vue').default);
+Vue.component('hello-component', require('./components/HelloComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -58,6 +66,15 @@ const store = new Vuex.Store({
     getters
 })
 
+const routes = [
+    //{path: '/', component: DashboardComponent},
+    {path: '/info', component: HelloComponent}
+];
+
+const router = new VueRouter({
+    mode: 'history',
+    routes
+});
 
 export const app = new Vue({
     el: '#app',
