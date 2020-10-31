@@ -2,7 +2,7 @@
     <div>
         <div class="sign" v-if="time">
             <div style="text-align: center">
-                <span class="flicker">Welcome to</span>
+                <span class="flicker">Welcome To</span>
                 <br>
                 <span class="fast-flicker">Belphi</span>
                 <br>
@@ -52,7 +52,6 @@ body {
     top: 0%;
     letter-spacing: 2;
     font-family: serif;
-    text-transform: capitalize;
     background-image: url('images/bg1.jpg');
     background-repeat: no-repeat;
     background-position: center top;
@@ -77,7 +76,6 @@ body {
     left: 0%;
     top: 0%;
     font-family: serif;
-    text-transform: capitalize;
     font-size: 5em;
     color: #fff6a9;
     text-shadow: 0 0 0.6rem #fff6a9, 0 0 1.5rem #f9b434,
