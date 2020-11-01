@@ -44,6 +44,7 @@ Vue.component('signin-form-component', require('./components/SigninFormComponent
 Vue.component('dashboard-component', require('./components/DashboardComponent.vue').default);
 Vue.component('chats-component', require('./components/ChatsComponent.vue').default);
 Vue.component('info-component', require('./components/InfoComponent.vue').default);
+Vue.component('about-component', require('./components/AboutComponent.vue').default);
 Vue.component('navbar-component', require('./components/NavbarComponent.vue').default);
 
 /**
