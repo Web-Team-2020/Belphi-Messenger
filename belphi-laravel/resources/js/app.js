@@ -19,9 +19,9 @@ import Vuex from 'vuex'
 
 import VueRouter from 'vue-router';
 
-import state from "./state";
-import mutations from "./mutations";
-import getters from "./getters";
+import state from "./store/state";
+import mutations from "./store/mutations";
+import getters from "./store/getters";
 import GreetingComponent from "./components/GreetingComponent";
 import SigninFormComponent from "./components/SigninFormComponent";
 import Hello from "./components/HelloComponent";
