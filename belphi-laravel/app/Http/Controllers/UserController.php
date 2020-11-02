@@ -63,4 +63,8 @@ class UserController extends Controller
         }
         return $response;
     }
+
+    public function postGetInfo(Request $request){
+        return User::where('userid', 'like', $request['id'])->first();
+    }
 }

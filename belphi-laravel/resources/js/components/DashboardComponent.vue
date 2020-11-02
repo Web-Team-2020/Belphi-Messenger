@@ -3,7 +3,7 @@
         <div class="pos-f-t">
             <nav class="navbar navbar-light bg-warning">
                 <form class="form-inline">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -27,8 +27,8 @@
 
                 <div class="flex-item-right style_border">
                     <!-- <chats-component></chats-component> -->
-                    <!-- <info-component></info-component> -->
-                    <about-component></about-component>
+                     <info-component></info-component>
+                    <!-- <about-component></about-component> -->
                 </div>
             </div>
         </div>
