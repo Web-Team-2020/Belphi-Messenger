@@ -25,10 +25,10 @@
                 <div class="form-group row">
                     <label for="yourID" class="col-sm-2 col-form-label">ID</label>
                     <div class="col-sm-6">
-                        <input v-if="!showEditID" v-model="user.id" type="text" class="form-control" id="yourIDDis"
+                        <input v-if="!showEditID" v-model="user.infoid" type="text" class="form-control" id="yourIDDis"
                                placeholder="yourID"
                                disabled>
-                        <input v-if="showEditID" v-model="user.id" type="text" class="form-control" id="yourID"
+                        <input v-if="showEditID" v-model="user.infoid" type="text" class="form-control" id="yourID"
                                placeholder="yourID">
                     </div>
                     <button v-if="!showEditID" type="button" class="btn btn-outline-warning col-sm-2" @click="editID">
@@ -119,7 +119,7 @@ export default {
 
             user: {
                 name: 'your name',
-                id: 'your ID',
+                infoid: 'your ID',
                 bio: 'your bio',
                 email: 'your email',
                 phone: 'your phone'
@@ -130,24 +130,45 @@ export default {
     },
     methods: {
         getUserID() {
-            return 2
+            return 1
         },
         editName() {
             this.showEditName = !this.showEditName
+            this.updateUserInfo()
         },
         editID() {
             this.showEditID = !this.showEditID
+            this.updateUserInfo()
         },
         editBio() {
             this.showEditBio = !this.showEditBio
+            this.updateUserInfo()
         },
         editEmail() {
             this.showEditEmail = !this.showEditEmail
+            this.updateUserInfo()
+
         },
         editPhone() {
             this.showEditPhone = !this.showEditPhone
+            this.updateUserInfo()
+
         },
         saveName() {
+            axios.post('/api/update/user/name', {
+                id: this.getUserID(),
+                name: this.user.name
+            })
+                .then(function (response) {
+
+                    //console.log(this.user)
+                    console.log(response);
+                }.bind(this))
+                .catch(function (error) {
+
+                    console.log(error);
+                }.bind(this));
+
             this.editName()
             //call a function to change the name in db
         },
@@ -162,23 +183,27 @@ export default {
         },
         savePhone() {
             this.editPhone()
+        },
+        updateUserInfo() {
+            axios.post('/api/info/' + this.getUserID())
+                .then(function (response) {
+                    this.user.name = response.data.name
+                    this.user.email = response.data.email
+                    this.user.infoid = response.data.infoid
+                    this.user.bio = response.data.bio
+                    this.user.phone = response.data.phone
+                    //console.log(this.user)
+                    console.log(response);
+                }.bind(this))
+                .catch(function (error) {
+
+                    console.log(error);
+                }.bind(this));
+
         }
     },
     mounted() {
-        axios.post('/api/info/' + this.getUserID())
-            .then(function (response) {
-                this.user.name = response.data.name
-                this.user.email = response.data.email
-                this.user.id = response.data.id
-                this.user.phone = response.data.phone
-                //console.log(this.user)
-                console.log(response);
-            }.bind(this))
-            .catch(function (error) {
-
-                console.log(error);
-            }.bind(this));
-
+        this.updateUserInfo()
     }
 }
 </script>

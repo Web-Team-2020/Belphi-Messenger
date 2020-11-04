@@ -28,7 +28,7 @@ class UserController extends Controller
             $response = response()->json($result)->setStatusCode(400, 'Bad request.');
         } else {
             $user = new User();
-            $user->id = $request['id'];
+            $user->infoid = $request['id'];
             $user->name = $request['name'];
             $user->password = bcrypt($request['password']);
             $user->bio = $request['bio'];
@@ -64,7 +64,19 @@ class UserController extends Controller
         return $response;
     }
 
-    public function postGetInfo(Request $request){
-        return User::where('userid', 'like', $request['id'])->first();
+    public function postGetInfo(Request $request)
+    {
+        return User::where('id', '=', $request['id'])->first();
     }
+
+    public function postUpdateName(Request $request)
+    {
+        $user = User::where('id', '=', $request['id'])->first();
+        $user->name = $request['name'];
+        $user->update();
+        $result = ['result' => 'User info updated',
+            'message' => 'The user name has been changed'];
+        return response()->json($result)->setStatusCode(200, 'Success');
+    }
+
 }

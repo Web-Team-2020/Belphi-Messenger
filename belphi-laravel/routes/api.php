@@ -25,3 +25,5 @@ Route::post('/signup', [UserController::class, 'postSignUp']);
 Route::post('/signin', [UserController::class, 'postSignIn']);
 
 Route::post('/info/{id}', [UserController::class, 'postGetInfo']);
+
+Route::post('/update/user/name', [UserController::class, 'postUpdateName']);
