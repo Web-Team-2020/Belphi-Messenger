@@ -13,7 +13,7 @@ class UserController extends Controller
     public function postSignUp(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id' => ['required', 'unique:users', 'max:15'],
+            'infoid' => ['required', 'unique:users', 'max:15'],
             'name' => ['required', 'max:20'],
             'password' => ['required', 'min:4'],
             'bio' => ['max:255'],
@@ -155,6 +155,28 @@ class UserController extends Controller
             $user->update();
             $result = ['result' => 'User info updated',
                 'message' => 'The user bio has been changed'];
+            return response()->json($result)->setStatusCode(200, 'Success');
+        }
+    }
+
+    public function postUpdateID(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+
+            'infoid' => ['required', 'unique:users', 'max:15'],
+        ]);
+        if ($validator->fails()) {
+            $result = ['result' => 'Failure',
+                'errors' => $validator->errors(),
+                'message' => 'The user ID did not changed'];
+
+            return response()->json($result)->setStatusCode(200, 'Failure');
+        } else {
+            $user = User::where('id', '=', $request['id'])->first();
+            $user->infoid = $request['infoid'];
+            $user->update();
+            $result = ['result' => 'User info updated',
+                'message' => 'The user ID has been changed'];
             return response()->json($result)->setStatusCode(200, 'Success');
         }
     }

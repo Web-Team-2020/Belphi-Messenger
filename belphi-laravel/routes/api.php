@@ -33,3 +33,5 @@ Route::post('/update/user/email', [UserController::class, 'postUpdateEmail']);
 Route::post('/update/user/phone', [UserController::class, 'postUpdatePhone']);
 
 Route::post('/update/user/bio', [UserController::class, 'postUpdateBio']);
+
+Route::post('/update/user/id', [UserController::class, 'postUpdateID']);
