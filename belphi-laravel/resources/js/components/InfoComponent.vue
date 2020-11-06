@@ -155,10 +155,35 @@ export default {
 
         },
         saveName() {
-            axios.post('/api/update/user/name', {
-                id: this.getUserID(),
-                name: this.user.name
-            })
+            this.sendUpdateRequest('name')
+            this.editName()
+            //call a function to change the name in db
+        },
+        saveID() {
+            this.editID()
+        },
+        saveEmail() {
+            this.sendUpdateRequest('email')
+            this.editEmail()
+        },
+        saveBio() {
+            this.sendUpdateRequest('bio')
+            this.editBio()
+        },
+        savePhone() {
+            this.sendUpdateRequest('phone')
+            this.editPhone()
+        },
+        sendUpdateRequest(type) {
+            const data = {id: this.getUserID()};
+            if (type === 'email') {
+                data['email'] = this.user.email
+            } else if (type === 'name') {
+                data['name'] = this.user.name
+            }else if(type === 'phone'){
+                data['phone'] = this.user.phone
+            }
+            axios.post('/api/update/user/' + type, data)
                 .then(function (response) {
 
                     //console.log(this.user)
@@ -169,20 +194,6 @@ export default {
                     console.log(error);
                 }.bind(this));
 
-            this.editName()
-            //call a function to change the name in db
-        },
-        saveID() {
-            this.editID()
-        },
-        saveEmail() {
-            this.editEmail()
-        },
-        saveBio() {
-            this.editBio()
-        },
-        savePhone() {
-            this.editPhone()
         },
         updateUserInfo() {
             axios.post('/api/info/' + this.getUserID())

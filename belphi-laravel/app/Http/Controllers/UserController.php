@@ -71,12 +71,92 @@ class UserController extends Controller
 
     public function postUpdateName(Request $request)
     {
-        $user = User::where('id', '=', $request['id'])->first();
-        $user->name = $request['name'];
-        $user->update();
-        $result = ['result' => 'User info updated',
-            'message' => 'The user name has been changed'];
-        return response()->json($result)->setStatusCode(200, 'Success');
+        $validator = Validator::make($request->all(), [
+
+            'name' => ['required', 'max:20'],
+        ]);
+        if ($validator->fails()) {
+            $result = ['result' => 'Failure',
+                'errors' => $validator->errors(),
+                'message' => 'The user name did not changed'];
+
+            return response()->json($result)->setStatusCode(200, 'Failure');
+        } else {
+            $user = User::where('id', '=', $request['id'])->first();
+            $user->name = $request['name'];
+            $user->update();
+            $result = ['result' => 'User info updated',
+                'message' => 'The user name has been changed'];
+            return response()->json($result)->setStatusCode(200, 'Success');
+        }
+    }
+
+    public function postUpdateEmail(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+
+            'email' => ['email', 'required', 'unique:users'],
+        ]);
+        if ($validator->fails()) {
+            $result = ['result' => 'Failure',
+                'errors' => $validator->errors(),
+                'message' => 'The user email address did not changed'];
+
+            return response()->json($result)->setStatusCode(200, 'Failure');
+        } else {
+            $user = User::where('id', '=', $request['id'])->first();
+            $user->email = $request['email'];
+            $user->update();
+            $result = ['result' => 'User info updated',
+                'message' => 'The user email address has been changed'];
+            return response()->json($result)->setStatusCode(200, 'Success');
+        }
+
+    }
+
+    public function postUpdatePhone(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+
+            'phone' => ['numeric', 'required', 'unique:users'],
+        ]);
+        if ($validator->fails()) {
+            $result = ['result' => 'Failure',
+                'errors' => $validator->errors(),
+                'message' => 'The user phone did not changed'];
+
+            return response()->json($result)->setStatusCode(200, 'Failure');
+        } else {
+            $user = User::where('id', '=', $request['id'])->first();
+            $user->phone = $request['phone'];
+            $user->update();
+            $result = ['result' => 'User info updated',
+                'message' => 'The user phone number has been changed'];
+            return response()->json($result)->setStatusCode(200, 'Success');
+        }
+
+    }
+
+    public function postUpdateBio(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+
+            'bio' => ['max:255'],
+        ]);
+        if ($validator->fails()) {
+            $result = ['result' => 'Failure',
+                'errors' => $validator->errors(),
+                'message' => 'The user bio did not changed'];
+
+            return response()->json($result)->setStatusCode(200, 'Failure');
+        } else {
+            $user = User::where('id', '=', $request['id'])->first();
+            $user->bio = $request['bio'];
+            $user->update();
+            $result = ['result' => 'User info updated',
+                'message' => 'The user bio has been changed'];
+            return response()->json($result)->setStatusCode(200, 'Success');
+        }
     }
 
 }
