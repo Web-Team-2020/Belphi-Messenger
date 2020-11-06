@@ -7,7 +7,7 @@
                     <div class="col-sm-6">
                         <input v-if="!showEditName" v-model="user.name" type="text" class="form-control"
                                id="yourNameDis"
-                               placeholder="You have no user name" disabled>
+                               placeholder="" disabled>
                         <input v-if="showEditName" v-model="user.name" type="text" class="form-control" id="yourName"
                                placeholder="">
                     </div>
