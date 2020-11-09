@@ -83,7 +83,8 @@ export default {
             })
                 .then(function (response) {
                     console.log(response);
-                })
+                    this.$router.push({name : 'dashboard'});
+                }.bind(this))
                 .catch(function (error) {
                     if (error.response.status == 400){
                         this.errors = error.response.data.message

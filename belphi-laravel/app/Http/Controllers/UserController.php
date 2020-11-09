@@ -13,7 +13,7 @@ class UserController extends Controller
     public function postSignUp(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'infoid' => ['required', 'unique:users', 'max:15'],
+            'infoid' => ['unique:users', 'max:15'],
             'name' => ['required', 'max:20'],
             'password' => ['required', 'min:4'],
             'bio' => ['max:255'],
