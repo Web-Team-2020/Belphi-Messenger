@@ -27,7 +27,9 @@
 
                 <div class="flex-item-right style_border">
                     <!-- <chats-component></chats-component> -->
-                     <info-component></info-component>
+                    <!--<signin-form-component></signin-form-component> -->
+                    <starting-component></starting-component>
+                     <!--<info-component></info-component> -->
                     <!-- <about-component></about-component> -->
                 </div>
             </div>
