@@ -2,6 +2,7 @@ import Greeting from './components/GreetingComponent.vue';
 import Dashboard from './components/DashboardComponent.vue';
 import Chats from './components/ChatsComponent.vue';
 import Info from'./components/InfoComponent.vue';
+import Contacts from './components/ContactsComponent.vue';
 import About from './components/AboutComponent.vue';
 
 export const routes = [
@@ -28,7 +29,7 @@ export const routes = [
             {
                 name: 'contacts',
                 path: 'contacts',
-                component: Dashboard
+                component: Contacts
             },
             {
                 name: 'settings',
