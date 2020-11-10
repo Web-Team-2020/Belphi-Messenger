@@ -34,6 +34,7 @@ export default {
     },
     computed: {
         inInit: function () {
+            
             return this.$store.getters.getInit
         },
         inSignup() {

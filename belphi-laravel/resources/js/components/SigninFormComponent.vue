@@ -17,10 +17,11 @@
             </div>
         </form>
 
+        <!-- <router-link :to="{name: 'dashboard'}"> -->
         <button type="submit" class="btn-hover color-6" @click="formSignin">
             Sign in
         </button>
-
+        <!-- </router-link> -->
 
         <!-- Below
         <input type="hidden" name="_token" value="">
@@ -54,7 +55,14 @@ export default {
                 .then(function (response) {
                     console.log('accepted');
                     console.log(response);
-                })
+                    try {
+                        this.$router.push({name : 'home'});
+                        this.$store.commit('changeLogout');
+                        this.$store.commit('changeId');
+                    } catch {
+                        console.log('error in router-view');
+                    }
+                }.bind(this))
                 .catch(function (error) {
                     if (error.response.status == 401){
                         this.errors = error.response.data.message

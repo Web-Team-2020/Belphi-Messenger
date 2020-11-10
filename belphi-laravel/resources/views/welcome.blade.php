@@ -2,7 +2,6 @@
 
 @section('content')
     <div>
-        <!-- <greeting-component></greeting-component> -->
-        <dashboard-component></dashboard-component>
+        <app-component></app-component>
     </div>
 @endsection

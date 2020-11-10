@@ -134,7 +134,7 @@ export default {
     },
     methods: {
         getUserID() {
-            return 1
+            return this.$store.getters.getId;
         },
         editName(change) {
             this.showEditName = !this.showEditName

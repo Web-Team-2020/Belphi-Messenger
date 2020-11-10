@@ -83,7 +83,16 @@ export default {
             })
                 .then(function (response) {
                     console.log(response);
-                })
+                    try {
+                        this.$router.push({name : 'home'});
+                        this.$store.commit('changeLogout');
+                        this.$store.commit('changeSignin');
+                        this.$store.commit('changeId');
+
+                    } catch {
+                        console.log('error in router-view');
+                    }
+                }.bind(this))
                 .catch(function (error) {
                     if (error.response.status == 400){
                         this.errors = error.response.data.message
