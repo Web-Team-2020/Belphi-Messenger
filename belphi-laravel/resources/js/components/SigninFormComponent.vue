@@ -55,7 +55,13 @@ export default {
                 .then(function (response) {
                     console.log('accepted');
                     console.log(response);
-                    this.$router.push({name : 'dashboard'});
+                    try {
+                        this.$router.push({name : 'home'});
+                        this.$store.commit('changeLogout');
+                        this.$store.commit('changeId');
+                    } catch {
+                        console.log('error in router-view');
+                    }
                 }.bind(this))
                 .catch(function (error) {
                     if (error.response.status == 401){

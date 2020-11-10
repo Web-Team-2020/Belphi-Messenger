@@ -10,27 +10,27 @@
                     </button>
                     <h3 id="mark"> Belphi </h3>
                 </form>
-                <button class="navbar-toggler">Exit</button>
+                <button class="navbar-toggler" @click="changeView('greeting')">Exit</button>
             </nav>
 
             <div class="flex-container">
                 <div class="collapse style_border flex-item-left" id="navbarToggleExternalContent">
                     <div class="p-4 list-group list-group-flush">
                         <button type="button" class="list-group-item list-group-item-action" disabled style="color: black;">your name</button>
-                        <button type="button" class="list-group-item list-group-item-action">Info</button>
-                        <button type="button" class="list-group-item list-group-item-action">Contacts</button>
-                        <button type="button" class="list-group-item list-group-item-action">Settings</button>
-                        <button type="button" class="list-group-item list-group-item-action">About</button>
-                        <button type="button" class="list-group-item list-group-item-action">Logout</button>
+                        <button type="button" class="list-group-item list-group-item-action" @click="changeView('home')">Home</button>
+                        <button type="button" class="list-group-item list-group-item-action" @click="changeView('info')">Info</button>
+                        <button type="button" class="list-group-item list-group-item-action" @click="changeView('contacts')">Contacts</button>
+                        <button type="button" class="list-group-item list-group-item-action" @click="changeView('settings')">Settings</button>
+                        <button type="button" class="list-group-item list-group-item-action" @click="changeView('about')">About</button>
+                        <button type="button" class="list-group-item list-group-item-action" @click="changeView('greeting')">Logout</button>
                     </div>
                 </div>
 
                 <div class="flex-item-right style_border">
-                    <!-- <chats-component></chats-component> -->
-                     <info-component></info-component>
-                    <!-- <about-component></about-component> -->
+                    <router-view></router-view>
                 </div>
             </div>
+            
         </div>
     </div>
 </template>
@@ -39,6 +39,11 @@
 export default {
     data() {
         return {
+        }
+    },
+    methods: {
+        changeView(str_name) {
+            this.$router.push({name : str_name});
         }
     }
 }

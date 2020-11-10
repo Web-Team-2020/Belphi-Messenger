@@ -1,8 +1,3 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
 require('./bootstrap');
 
@@ -33,14 +28,9 @@ const router = new VueRouter({
 });
 
 Vue.component('app-component', require('./components/App.vue').default);
-// Vue.component('greeting-component', require('./components/GreetingComponent.vue').default);
 Vue.component('starting-component', require('./components/StartingComponent.vue').default);
 Vue.component('signup-form-component', require('./components/SignupFormComponent.vue').default);
 Vue.component('signin-form-component', require('./components/SigninFormComponent.vue').default);
-// Vue.component('dashboard-component', require('./components/DashboardComponent.vue').default);
-Vue.component('chats-component', require('./components/ChatsComponent.vue').default);
-Vue.component('info-component', require('./components/InfoComponent.vue').default);
-Vue.component('about-component', require('./components/AboutComponent.vue').default);
 Vue.component('navbar-component', require('./components/NavbarComponent.vue').default);
 
 const store = new Vuex.Store({

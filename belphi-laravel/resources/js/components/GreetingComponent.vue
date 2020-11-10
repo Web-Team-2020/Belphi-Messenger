@@ -24,10 +24,15 @@ export default {
         }
     },
     mounted() {
-        setTimeout(() => {
+        if (this.$store.getters.getLogout === true) {
+            this.time = false
+            document.getElementById('div_mainpage').style.visibility = "visible";
+        } else {
+            setTimeout(() => {
             this.time = false
             document.getElementById('div_mainpage').style.visibility = "visible";
         }, 10000);
+        }
     }
 }
 </script>
